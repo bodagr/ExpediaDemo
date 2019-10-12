@@ -1,3 +1,7 @@
+/*
+ * BS
+ */
+
 package com.qa.base;
 
 import java.io.FileInputStream;
