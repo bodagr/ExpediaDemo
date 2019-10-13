@@ -21,13 +21,16 @@ public class ExpediaPageTest extends TestBase {
 		initialization();
 		expediaPage = new ExpediaPage();
 	}
+	
+	@Test
+	public void verifyTitle() {
+		expediaPage.getTitle();
+	}
 
 	
-	@Test(priority=1)
+	@Test
 	public void verifyNonStopFlyights() {
-		expediaPage.startPage();
-		searchResultPage.isResultStatsVisible();
-		sleep(2);
+		expediaPage.startPage().isResultStatsVisible();
 	}
 	
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qa.base.TestBase;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,45 +16,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchResultPage extends TestBase {
 	
-	@FindBy(xpath = "//input[@name='fs0' and @id='stopFilter_stops-0']//parent::div")
-	WebElement selectNonStop;
-	
-	@FindBy(xpath = "//input[@id='return-date-1']")
-	WebElement selectReturnDate;
-	
-	@FindBy(xpath = "//input[@data-test-id='listing-main']")
-	WebElement resultSections;
+	@FindBy(xpath = "//span[@id = 'Nonstop-stop-flights-checkbox']/parent::label")
+	WebElement selectNonStop;	
 	
 
 	public SearchResultPage() {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void isResultStatsVisible() {
-		String keys = Keys.chord(Keys.CONTROL, "a");
-		selectReturnDate.sendKeys(keys + Keys.DELETE);
-		selectReturnDate.clear();
-		selectReturnDate.sendKeys("01/01/2020");
+	public void isResultStatsVisible() {		
 		
-		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.elementToBeClickable(selectNonStop));
+//		WebDriverWait wait = new WebDriverWait(driver, 5);
+//		wait.until(ExpectedConditions.elementToBeClickable(selectNonStop));
 		click(selectNonStop);
 		
+		List <WebElement> elements = driver.findElements(By.xpath("//div[@data-test-id='listing-main']//span[@data-test-id='duration']"));
 		
-		WebElement element= selectNonStop; 
-		JavascriptExecutor ex=(JavascriptExecutor)driver;
-		ex.executeScript("arguments[0].click()", element);
-		sleep(5);
-//
-		
-//		List<WebElement> list = operBy;
-//		for (int i=0; i<list.size(); i++) {
-//			WebElement local_element = list.get(i);
-//			
-//			String header = local_element.getText();
-//			System.out.println("Programming courses ----> " +(i+1) +". " + header);
-//		}
+		for (WebElement el : elements) {
+			System.out.println(el.getText());
+		}
 		
 	}
 

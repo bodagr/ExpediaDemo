@@ -34,6 +34,11 @@ public class ExpediaPage extends TestBase {
 		PageFactory.initElements(driver, this);		
 	}
 	
+	public void getTitle() {
+		String title = driver.getTitle();
+		System.out.println(title);
+	}
+	
 	public SearchResultPage startPage() {
 		click(flightsBtn);
 		flyingFromInput.sendKeys("San Francisco");
@@ -41,18 +46,17 @@ public class ExpediaPage extends TestBase {
 		flyingToInput.sendKeys("Las Vegas");
 		
 		departingDateInput.clear();
-		departingDateInput.sendKeys("12/27/2019");
-		sleep(3);
-//		returningDateInput.click();
-//		String keys = Keys.chord(Keys.CONTROL, "a");
-//		returningDateInput.sendKeys(keys + Keys.DELETE);
+		departingDateInput.sendKeys("10/20/2019");
+		sleep(1);
+		returningDateInput.click();
+		String keys = Keys.chord(Keys.CONTROL, "a");
+		returningDateInput.sendKeys(keys + Keys.DELETE);
+		sleep(1);
 		returningDateInput.clear();
-		returningDateInput.sendKeys("01/01/2020");
+		returningDateInput.sendKeys("10/25/2019");
 		click(flyingToInput);
 
-		
-		click(searchBtn);
-		
+		click(searchBtn);		
 		return new SearchResultPage();
 	}
 	
